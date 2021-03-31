@@ -1,0 +1,25 @@
+* {
+    background: rgb(7, 7, 7);
+    color: white;
+    text-align: center;
+}
+
+body {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+button {
+    border-radius: 5px;
+    border: solid 2px;
+    display: block;
+}
+
+.btn {
+    width: 27px;
+    height: 27px;
+    margin: 2px 0;
+    background-color: transparent;
+    border: solid 2px;
+    border-radius: 5px;
+}
