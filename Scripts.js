@@ -10,53 +10,50 @@ Próximas Atualizações: Dêem dicas para atualizar
 
 
 
-var btn = document.getElementsByTagName("input")
+var button = document.getElementsByTagName("input")
 var res = document.getElementById('res')
 var vez = document.getElementById('vez')
-var rest = document.getElementById('rest')
-vez.innerHTML = `[ X ] Começa`
-var id = null
-var jogadaXO = Array()
+var button_Reset = document.getElementById('rest')
+var move = Array()
 var win = false
-var empate = 0
+var draw = 0
+var counter = 0
 
+vez.innerHTML = `[ X ] Começa`
 
 for (let i = 0; i < 9; i++) {
 
-    var cont = 0
-    btn[i].addEventListener('click', () => {
-        jogadaXO = jogada(cont)
-        id = Number(btn[i].id.toString().slice(-1)) - 1
+    button[i].addEventListener('click', () => {
+        move = jogada(counter)
 
+        //Adiciona valores nos button
+        if (win == false && button[i].value == ' ') {
+            vez.innerHTML = `Agora é [ ${move == "X" ? "O": "X"} ]`
 
-        //Adiciona valores nos btn
-        if (win == false && btn[i].value == ' ') {
-            vez.innerHTML = `Agora é [ ${jogadaXO == "X" ? "O": "X"} ]`
+            button[i].value = move
 
-            btn[i].value = jogadaXO
-
-            cont++
+            counter++
 
             // Verifica se houve um ganhado aparti da 5 jogada
-            if (cont >= 5) {
+            if (counter >= 5) {
 
-                var resultado = verSeGanhou(jogadaXO, btn)
+                let result = verSeGanhou(move, button)
 
-                if (resultado == 'Vitoria') {
+                if (result == 'Vitoria') {
 
-                    res.innerHTML = `${jogadaXO} - Ganhou!`
+                    res.innerHTML = `${move} - Ganhou!`
                     vez.innerHTML = 'FIM'
                     win = true
-                    mostra_Btn_Rest(rest)
+                    mostra_button_Reset(button_Reset)
 
-                } else if (resultado == 'Continua') {
+                } else if (result == 'Continua') {
 
                     res.innerHTML = ''
 
                 } else {
 
-                    res.innerHTML = `Deu empate!`
-                    mostra_Btn_Rest(rest)
+                    res.innerHTML = `Deu Empate!`
+                    mostra_button_Reset(button_Reset)
 
                 }
             }
@@ -67,32 +64,31 @@ for (let i = 0; i < 9; i++) {
 }
 
 // Reseta tuda para uma nova partida!
-rest.addEventListener('click', () => {
-    rest.style.display = 'none'
-    cont = empate = 0
+button_Reset.addEventListener('click', () => {
+    reset.style.display = 'none'
+    counter = draw = 0
     vez.innerText = '[ X ] - Começa'
     res.innerText = ''
     win = false
 
     for (let i = 0; i < 9; i++){
 
-        btn[i].value = ' '
+        button[i].value = ' '
 
     }
-
 })
 
 //define se quem vai jogar
 function jogada(cont) {
-    if (cont % 2 == 0) {
+    if (counter % 2 == 0) {
         return "X"
     } else {
         return "O"
     }
 }
 
-function verSeGanhou(jogadaXO, btn) {
-    let cont = 0
+function verSeGanhou(move, button) {
+    let counter = 0
     let wins = [ //são todas as possibilidades de vitorias
         // 0 - Linahs
 
@@ -113,15 +109,15 @@ function verSeGanhou(jogadaXO, btn) {
 
     for (let ind = 0; ind < wins.length; ind++) {
 
-        cont = 0
+        counter = 0
 
         for (let inde = 0; inde < wins[ind].length; inde++) {
 
-            if (btn[wins[ind][inde]].value == jogadaXO) {
+            if (button[wins[ind][inde]].value == move) {
 
-                cont++
+                counter++
                 
-                if (cont == 3) {
+                if (counter == 3) {
                     return 'Vitoria'
                 }
             }
@@ -129,9 +125,9 @@ function verSeGanhou(jogadaXO, btn) {
 
     }
 
-    empate++
+    draw++
     
-    if (empate == 5) {
+    if (draw == 5) {
 
         return 'Emapte'
 
@@ -141,10 +137,10 @@ function verSeGanhou(jogadaXO, btn) {
 
 }
 
-function mostra_Btn_Rest(rest) {
+function mostra_button_Reset(button_Reset) {
 
-    if (rest.style.display == 'none') {
-        document.getElementById('rest').style.display = 'block'
+    if (button_Reset.style.display == 'none') {
+        document.getElementById('reset').style.display = 'block'
     }
     
 }
