@@ -13,7 +13,7 @@ Próximas Atualizações: Dêem dicas para atualizar
 var button = document.getElementsByTagName("input")
 var res = document.getElementById('res')
 var vez = document.getElementById('vez')
-var button_Reset = document.getElementById('rest')
+var button_Reset = document.getElementById('button_Reset')
 var move = Array()
 var win = false
 var draw = 0
@@ -26,7 +26,6 @@ for (let i = 0; i < 9; i++) {
     button[i].addEventListener('click', () => {
         move = jogada(counter)
 
-        //Adiciona valores nos button
         if (win == false && button[i].value == ' ') {
             vez.innerHTML = `Agora é [ ${move == "X" ? "O": "X"} ]`
 
@@ -34,7 +33,6 @@ for (let i = 0; i < 9; i++) {
 
             counter++
 
-            // Verifica se houve um ganhado aparti da 5 jogada
             if (counter >= 5) {
 
                 let result = verSeGanhou(move, button)
@@ -59,27 +57,24 @@ for (let i = 0; i < 9; i++) {
             }
         }
 
-
     })
 }
 
-// Reseta tuda para uma nova partida!
 button_Reset.addEventListener('click', () => {
-    reset.style.display = 'none'
+    button_Reset.style.display = 'none'
     counter = draw = 0
     vez.innerText = '[ X ] - Começa'
     res.innerText = ''
     win = false
 
-    for (let i = 0; i < 9; i++){
+    for (let i = 0; i < 9; i++) {
 
         button[i].value = ' '
 
     }
 })
 
-//define se quem vai jogar
-function jogada(cont) {
+function jogada(counter) {
     if (counter % 2 == 0) {
         return "X"
     } else {
@@ -116,7 +111,7 @@ function verSeGanhou(move, button) {
             if (button[wins[ind][inde]].value == move) {
 
                 counter++
-                
+
                 if (counter == 3) {
                     return 'Vitoria'
                 }
@@ -126,7 +121,7 @@ function verSeGanhou(move, button) {
     }
 
     draw++
-    
+
     if (draw == 5) {
 
         return 'Emapte'
@@ -137,10 +132,11 @@ function verSeGanhou(move, button) {
 
 }
 
+
 function mostra_button_Reset(button_Reset) {
 
     if (button_Reset.style.display == 'none') {
-        document.getElementById('reset').style.display = 'block'
+        document.getElementById('button_Reset').style.display = 'block'
     }
-    
+
 }
