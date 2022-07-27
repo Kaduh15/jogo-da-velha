@@ -1,20 +1,59 @@
 * {
-    background: rgb(7, 7, 7);
-    color: white;
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif;
+	background: rgb(30, 30, 30);
+	color: rgb(244, 244, 244);
+	text-align: center;
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	border: none;
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+}
+
+body {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 100vh;
+}
+
+main, .velha {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 1rem;
+}
+
+.table {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
 }
 
 .btn {
-    font-size: 18pt;
-    width: 50px;
-    height: 50px;
-    margin: 2px 0;
-    background-color: transparent;
-    border: solid 2px;
-    border-radius: 5px;
+	font-size: 18pt;
+	cursor: pointer;
+	width: 3rem;
+	height: 3rem;
+	background-color: transparent;
+	border: solid 2px;
+	border-radius: 5px;
 }
 
 #button_Reset {
-    display: inline-block;
+	display: inline-block;
+	margin: 0 auto;
+	font-size: 1rem;
+	font-weight: 800;
+	border: solid 2px;
+	border-radius: 6px;
+	cursor: pointer;
+	padding: 0.5rem 1rem;
+}
+
+#button_Reset:hover {
+	color:rgb(30, 30, 30);
+	background-color: rgb(244, 244, 244);
+	transition: all;
+	transition-duration: 500ms;
 }

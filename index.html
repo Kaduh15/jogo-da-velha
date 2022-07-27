@@ -9,36 +9,35 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Jogo da velha</h1>
-    <section class="velha">
-
-        <h2 id="vez"></h2>
+    <main>
+        <h1>Jogo da velha</h1>
+        <section class="velha">
+            <h2 id="vez"></h2>
         
-        <div>
-            <input type="button" value=" " class="btn">
-            <input type="button" value=" " class="btn">
-            <input type="button" value=" " class="btn">
-        </div>
-
-        <div>
-            <input type="button" value=" " class="btn">
-            <input type="button" value=" " class="btn">
-            <input type="button" value=" " class="btn">
-        </div>
-
-        <div>
-            <input type="button" value=" " class="btn">
-            <input type="button" value=" " class="btn">
-            <input type="button" value=" " class="btn">
-        </div>
-
-        <p id="res"></p>
-        <input type="submit" id="button_Reset" value="Jogar de novo" style="display: none;">
-
-    </section>
+            <div class="table">
+                <div>
+                    <input type="button" value=" " class="btn">
+                    <input type="button" value=" " class="btn">
+                    <input type="button" value=" " class="btn">
+                </div>
+                <div>
+                    <input type="button" value=" " class="btn">
+                    <input type="button" value=" " class="btn">
+                    <input type="button" value=" " class="btn">
+                </div>
+                <div>
+                    <input type="button" value=" " class="btn">
+                    <input type="button" value=" " class="btn">
+                    <input type="button" value=" " class="btn">
+                </div>
+            </div>
+            <p id="res"></p>
+            <button type="button" id="button_Reset" style="display: none;">Jogar de novo</button>
+        </section>
+    </main>
 
     <!-- JavaScript -->
-    <script src="Scripts.js"></script>
+    <script src="scripts.js"></script>
 
 </body>
 </html>
