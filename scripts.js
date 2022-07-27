@@ -17,23 +17,23 @@ const button_Reset = document.getElementById('button_Reset')
 let move = ''
 let win = false
 let draw = 0
-let counter = 0
+let counter_play = 0
 
 vez.innerHTML = `[ X ] Começa`
 
 for (const button of buttons) {
 
     button.addEventListener('click', () => {
-        move = jogada(counter)
+        move = jogada(counter_play)
 
-        if (win == false && button.value == ' ') {
-            vez.innerHTML = `Agora é [ ${move == "X" ? "O": "X"} ]`
+        if (!win && button.value === ' ') {
+            vez.innerHTML = `Agora é [ ${move === "X" ? "O": "X"} ]`
 
             button.value = move
 
-            counter++
+            counter_play++
 
-            if (counter >= 5) {
+            if (counter_play >= 5) {
 
                 let result = verSeGanhou(move, buttons)
 
@@ -62,7 +62,7 @@ for (const button of buttons) {
 
 button_Reset.addEventListener('click', () => {
     button_Reset.style.display = 'none'
-    counter = draw = 0
+    counter_play = draw = 0
     vez.innerText = '[ X ] - Começa'
     res.innerText = ''
     win = false
@@ -74,17 +74,17 @@ button_Reset.addEventListener('click', () => {
     }
 })
 
-function jogada(counter) {
-    if (counter % 2 == 0) {
+function jogada(_counter) {
+    if (_counter % 2 === 0) {
         return "X"
     } else {
         return "O"
     }
 }
 
-function verSeGanhou(move, _buttons) {
+function verSeGanhou(_move, _buttons) {
     console.log(_buttons);
-    let counter = 0
+    let counter_possibility = 0
     let wins = [ //são todas as possibilidades de vitorias
         // 0 - Linahs
         [0, 1, 2],
@@ -104,15 +104,15 @@ function verSeGanhou(move, _buttons) {
 
     for (const possibility of wins) {
         
-        counter = 0
+        counter_possibility = 0
 
         for (const index of possibility) {
 
-            if (_buttons[index].value === move) {
+            if (_buttons[index].value === _move) {
 
-                counter++
+                counter_possibility++
 
-                if (counter === 3) {
+                if (counter_possibility === 3) {
                     return 'Vitoria'
                 }
             }
@@ -133,9 +133,9 @@ function verSeGanhou(move, _buttons) {
 }
 
 
-function mostra_button_Reset(button_Reset) {
+function mostra_button_Reset(_button_Reset) {
 
-    if (button_Reset.style.display == 'none') {
+    if (_button_Reset.style.display == 'none') {
         document.getElementById('button_Reset').style.display = 'block'
     }
 
