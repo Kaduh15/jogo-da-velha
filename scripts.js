@@ -10,14 +10,14 @@ Próximas Atualizações: Dêem dicas para atualizar
 
 
 
-var button = document.getElementsByTagName("input")
-var res = document.getElementById('res')
-var vez = document.getElementById('vez')
-var button_Reset = document.getElementById('button_Reset')
-var move = Array()
-var win = false
-var draw = 0
-var counter = 0
+const button = document.getElementsByTagName("input")
+const res = document.getElementById('res')
+const vez = document.getElementById('vez')
+const button_Reset = document.getElementById('button_Reset')
+let move = []
+let win = false
+let draw = 0
+let counter = 0
 
 vez.innerHTML = `[ X ] Começa`
 
