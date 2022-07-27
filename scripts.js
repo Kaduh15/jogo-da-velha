@@ -10,41 +10,41 @@ Próximas Atualizações: Dêem dicas para atualizar
 
 
 
-const button = document.getElementsByTagName("input")
+const buttons = document.getElementsByTagName("input")
 const res = document.getElementById('res')
 const vez = document.getElementById('vez')
 const button_Reset = document.getElementById('button_Reset')
-let move = []
+let move = ''
 let win = false
 let draw = 0
 let counter = 0
 
 vez.innerHTML = `[ X ] Começa`
 
-for (let i = 0; i < 9; i++) {
+for (const button of buttons) {
 
-    button[i].addEventListener('click', () => {
+    button.addEventListener('click', () => {
         move = jogada(counter)
 
-        if (win == false && button[i].value == ' ') {
+        if (win == false && button.value == ' ') {
             vez.innerHTML = `Agora é [ ${move == "X" ? "O": "X"} ]`
 
-            button[i].value = move
+            button.value = move
 
             counter++
 
             if (counter >= 5) {
 
-                let result = verSeGanhou(move, button)
+                let result = verSeGanhou(move, buttons)
 
-                if (result == 'Vitoria') {
+                if (result === 'Vitoria') {
 
                     res.innerHTML = `${move} - Ganhou!`
                     vez.innerHTML = 'FIM'
                     win = true
                     mostra_button_Reset(button_Reset)
 
-                } else if (result == 'Continua') {
+                } else if (result === 'Continua') {
 
                     res.innerHTML = ''
 
@@ -67,9 +67,9 @@ button_Reset.addEventListener('click', () => {
     res.innerText = ''
     win = false
 
-    for (let i = 0; i < 9; i++) {
+    for (const button of buttons) {
 
-        button[i].value = ' '
+        button.value = ' '
 
     }
 })
@@ -82,37 +82,37 @@ function jogada(counter) {
     }
 }
 
-function verSeGanhou(move, button) {
+function verSeGanhou(move, buttons) {
+    console.log(buttons);
     let counter = 0
     let wins = [ //são todas as possibilidades de vitorias
         // 0 - Linahs
-
         [0, 1, 2],
         [3, 4, 5],
         [6, 7, 8],
-        // 1 - Colunas
 
+        // 1 - Colunas
         [0, 3, 6],
         [1, 4, 7],
         [2, 5, 8],
-        // 2 - Diagonais
 
+        // 2 - Diagonais
         [0, 4, 8],
         [2, 4, 6]
 
     ]
 
-    for (let ind = 0; ind < wins.length; ind++) {
-
+    for (const possibility of wins) {
+        
         counter = 0
 
-        for (let inde = 0; inde < wins[ind].length; inde++) {
+        for (const index of possibility) {
 
-            if (button[wins[ind][inde]].value == move) {
+            if (buttons[index].value === move) {
 
                 counter++
 
-                if (counter == 3) {
+                if (counter === 3) {
                     return 'Vitoria'
                 }
             }
