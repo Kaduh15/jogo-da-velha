@@ -82,8 +82,8 @@ function jogada(counter) {
     }
 }
 
-function verSeGanhou(move, buttons) {
-    console.log(buttons);
+function verSeGanhou(move, _buttons) {
+    console.log(_buttons);
     let counter = 0
     let wins = [ //são todas as possibilidades de vitorias
         // 0 - Linahs
@@ -108,7 +108,7 @@ function verSeGanhou(move, buttons) {
 
         for (const index of possibility) {
 
-            if (buttons[index].value === move) {
+            if (_buttons[index].value === move) {
 
                 counter++
 
