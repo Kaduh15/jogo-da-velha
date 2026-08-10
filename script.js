@@ -84,6 +84,7 @@
 
   function endGame(result) {
     gameActive = false;
+
     if (result.winner) {
       score[result.winner]++;
       renderScore();
@@ -91,12 +92,6 @@
       const name =
         mode === 'pvc' && result.winner === 'O' ? 'Computador' : 'Jogador ' + result.winner;
       status.textContent = '';
-      status.style.background = result.winner === 'X'
-        ? 'rgba(255, 107, 107, 0.35)'
-        : 'rgba(72, 219, 251, 0.35)';
-      status.style.border = result.winner === 'X'
-        ? '2px solid rgba(255, 107, 107, 0.6)'
-        : '2px solid rgba(72, 219, 251, 0.6)';
       const badge = document.createElement('span');
       badge.className = `status-player ${result.winner.toLowerCase()}`;
       badge.textContent = name;
@@ -112,8 +107,6 @@
       renderScore();
       cells.forEach((cell) => cell.classList.add('disabled'));
       status.textContent = 'Empate! 🤝';
-      status.style.background = 'rgba(254, 202, 87, 0.35)';
-      status.style.border = '2px solid rgba(254, 202, 87, 0.6)';
       showModal('🤝', 'Empate!', 'Ninguém venceu desta vez. Jogar novamente?');
     }
   }
@@ -122,11 +115,15 @@
     modalIcon.textContent = icon;
     modalTitle.textContent = title;
     modalText.textContent = text;
-    modalOverlay.classList.add('show');
+    modalOverlay.hidden = false;
+    requestAnimationFrame(() => modalOverlay.classList.add('show'));
   }
 
   function hideModal() {
     modalOverlay.classList.remove('show');
+    setTimeout(() => {
+      modalOverlay.hidden = true;
+    }, 250);
   }
 
   function placeMark(index) {
@@ -223,8 +220,6 @@
     currentPlayer = 'X';
     gameActive = true;
     aiThinking = false;
-    status.style.background = '';
-    status.style.border = '';
 
     cells.forEach((cell) => {
       cell.textContent = '';

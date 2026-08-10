@@ -172,7 +172,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(2.4rem, 10vw, 3.5rem);
+  font-size: clamp(2.8rem, 14vw, 4.5rem);
   font-weight: 800;
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.08);
@@ -180,9 +180,6 @@ body {
   user-select: none;
   -webkit-user-select: none;
   transition: background 0.15s ease, transform 0.15s ease;
-  overflow: hidden;
-  min-height: 0;
-  aspect-ratio: 1 / 1;
 }
 
 .cell:hover {
@@ -316,14 +313,13 @@ body {
   -webkit-backdrop-filter: blur(6px);
   z-index: 100;
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.25s ease, visibility 0s 0.25s;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
 }
 
 .modal-overlay.show {
   opacity: 1;
-  visibility: visible;
-  transition: opacity 0.25s ease, visibility 0s 0s;
+  pointer-events: auto;
 }
 
 .modal {
