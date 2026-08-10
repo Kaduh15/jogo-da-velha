@@ -1,0 +1,6 @@
+services:
+  jogo-da-velha:
+    build: .
+    ports:
+      - "${PORT:-80}:80"
+    restart: unless-stopped
