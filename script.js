@@ -84,7 +84,7 @@
 
   function endGame(result) {
     gameActive = false;
-    if (result && result.winner) {
+    if (result.winner) {
       score[result.winner]++;
       renderScore();
       highlightWin(result.line);
